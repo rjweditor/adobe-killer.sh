@@ -32,4 +32,26 @@ This Bash script is designed to kill Adobe-related processes on macOS. It uses t
 
 2. Make the script executable: chmod +x kill_adobe_processes.sh
 3. Run the script with sudo to kill Adobe processes: sudo ./kill_adobe_processes.sh
+
+#PowerShell Version:
+
+'''# Check if the script is being run with administrative privileges
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Host "Please run this script as an administrator."
+    exit 1
+}
+
+# Define the process names to search for
+$adobeProcesses = "Adobe*", "*adobe*"
+
+# Kill Adobe-related processes
+foreach ($processName in $adobeProcesses) {
+    Get-Process -Name $processName -ErrorAction SilentlyContinue | ForEach-Object {
+        Write-Host "Killing process: $($_.ProcessName) (ID: $($_.Id))"
+        Stop-Process -Id $_.Id -Force
+    }
+}
+
+Write-Host "Adobe processes have been terminated."
+
    
