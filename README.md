@@ -1,5 +1,5 @@
 # adobe-killer.sh / adobe-killer.ps1
-# macOS Adobe Process Killing Script
+# macOS/Windows Adobe Process Killing Scripts
 
 ## Overview
 
